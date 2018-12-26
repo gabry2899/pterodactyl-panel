@@ -26,6 +26,14 @@ return [
             'title' => 'Temporarily Unavailable',
             'desc' => 'This node is under maintenance, therefore your server can temporarily not be accessed.',
         ],
+        'deploy' => [
+            'full' => 'We are sorry but at the moment there is no space left on our servers.',
+            'founds' => 'You don\'t have enough founds on your account to start this server.',
+        ],
+        'billing' => [
+            'identity' => 'You need to fill up your billing info before making any payments.',
+            'failed' => 'Sorry, your credit union rejected our request.',
+        ]
     ],
     'index' => [
         'header' => 'Your Servers',
@@ -86,4 +94,46 @@ return [
         '2fa_checkpoint_help' => 'Use the 2FA application on your phone to take a picture of the QR code to the left, or manually enter the code under it. Once you have done so, generate a token and enter it below.',
         '2fa_disable_error' => 'The 2FA token provided was not valid. Protection has not been disabled for this account.',
     ],
+    'billing' => [
+        'header' => 'Billing',
+        'header_sub' => '',
+        'link' => [
+            'heading' => 'Link a CreditCard',
+            'description' => 'You can add founds and link your creditcard to your account using any kind of credit-card. Payments are handled safely using <a href="//stripe.com/" target="_blank">Stripe</a>.',
+            'credit_card_info' => 'Credit Card Info',
+            'amount' => 'Amount',
+            'submit_button' => 'Charge & Link',
+        ],
+        'unlink' => [
+            'heading' => 'Unlink CreditCard',
+            'description' => 'A <b>:brand</b> card ending in <b>:last4</b> is actually linked to your profile.',
+            'submit_button' => 'Unlink',
+        ],
+        'charge' => [
+            'heading' => 'Add Founds using PayPal',
+            'description' => 'Safely add founds to your account using paypal. This is a one-time transaction, your paypal account won\'t be linked to this website.',
+            'amount' => 'Amount',
+            'submit_button' => 'Pay with Paypal',
+        ],
+        'summary' => [
+            'header' => 'Summary',
+            'this_month_charges' => 'This Month Charges',
+            'account_balance' => 'Account Balance',
+        ],
+        'info' => [
+            'header' => 'Billing Info',
+            'first_name' => 'First Name',
+            'last_name' => 'Last Name',
+            'address' => 'Street Address',
+            'city' => 'City',
+            'country' => 'Country',
+            'zip' => 'Zip',
+            'submit_button' => 'Save',
+        ],
+        'invoices' => [
+            'heading' => 'Invoices',
+            'amount' => 'Amount',
+            'date' => 'Date',
+        ]
+    ]
 ];

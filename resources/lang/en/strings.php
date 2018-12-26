@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'date_format' => 'Y-m-d',
     'email' => 'Email',
     'user_identifier' => 'Username or Email',
     'password' => 'Password',
@@ -18,10 +19,13 @@ return [
     'search' => 'Search',
     'suspended' => 'Suspended',
     'account' => 'Account',
+    'billing' => 'Billing',
     'security' => 'Security',
     'ip' => 'IP Address',
     'last_activity' => 'Last Activity',
     'revoke' => 'Revoke',
+    'price' => 'Monthly Price',
+    'cost' => 'Usage Cost',
     '2fa_token' => 'Authentication Token',
     'submit' => 'Submit',
     'close' => 'Close',

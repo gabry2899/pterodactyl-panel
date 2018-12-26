@@ -97,6 +97,11 @@
                                 <i class="fa fa-user"></i> <span>@lang('navigation.account.my_account')</span>
                             </a>
                         </li>
+                        <li class="{{ Route::currentRouteName() !== 'account.billing' ?: 'active' }}">
+                            <a href="{{ route('account.billing') }}">
+                                <i class="fa fa-credit-card"></i> <span>@lang('navigation.account.billing')</span>
+                            </a>
+                        </li>
                         <li class="{{ Route::currentRouteName() !== 'account.security' ?: 'active' }}">
                             <a href="{{ route('account.security')}}">
                                 <i class="fa fa-lock"></i> <span>@lang('navigation.account.security_controls')</span>
@@ -197,6 +202,9 @@
                                         @can('view-startup', $server)
                                             <li class="{{ Route::currentRouteName() !== 'server.settings.startup' ?: 'active' }}"><a href="{{ route('server.settings.startup', $server->uuidShort) }}"><i class="fa fa-angle-right"></i> @lang('navigation.server.startup_parameters')</a></li>
                                         @endcan
+                                        @if ($server->owner_id == Auth::user()->id) 
+                                            <li class="{{ Route::currentRouteName() !== 'server.settings.delete' ?: 'active' }}"><a href="{{ route('server.settings.delete', $server->uuidShort) }}"><i class="fa fa-angle-right"></i> @lang('navigation.server.delete')</a></li>
+                                        @endif
                                     </ul>
                                 </li>
                             @endif
