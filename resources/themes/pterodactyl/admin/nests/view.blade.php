@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <label class="control-label">Database Limit</label>
                             <div>
-                                <input type="numeric" name="database_limit" class="form-control" value="{{ $nest->database_limit }}" />
+                                <input type="number" name="database_limit" class="form-control" value="{{ $nest->database_limit }}" />
                             </div>
                         </div>
                     </div>

@@ -26,6 +26,7 @@ class StoreNestFormRequest extends AdminFormRequest
             'memory_monthly_cost' => 'nullable|numeric',
             'disk_monthly_cost' => 'nullable|numeric',
             'max_disk' => 'nullable|numeric',
+            'max_memory' => 'nullable|numeric',
             'cpu_limit' => 'nullable|numeric',
         ];
     }

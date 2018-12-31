@@ -59,5 +59,10 @@ return [
             'views-path' => 'pterodactyl',
             'asset-path' => 'themes/pterodactyl',
         ],
+        'gablab' => [
+            'extends' => 'pterodactyl',
+            'views-path' => 'gablab',
+            'asset-path' => 'themes/gablab',
+        ],
     ],
 ];

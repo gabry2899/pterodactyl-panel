@@ -1,0 +1,72 @@
+.with-submenu {
+    padding-left: 340px !important;
+}
+
+.submenu {
+    position: fixed;
+    top: 72px;
+    left: 80px;
+    bottom: 0;
+    width: 260px;
+    background-color: lighten($secondary-color, 15%);
+    a.submenu-toggle {
+        height: 43px;
+        display: block;
+        line-height: 43px;
+        background-color: lighten($secondary-color, 20%);
+        color: #fff;
+        padding: 0 .75em;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li > a {
+            i.fas, i.fab, i.far {
+                width: 32px;
+                text-align: center;
+                margin-right: .5em;
+            }
+            display: block;
+            padding: .5em .76em;
+            transition: all .2s;
+            color: lighten($primary-color, 5%);
+            &.active, &:hover, &:focus {
+                border-right: 3px solid $primary-color;
+                background-color: rgba($primary-color, .2);
+                color: $default-color;
+            }
+            
+            &.delete.active, &.delete:hover, &.delete:focus {
+                border-color: map-get($theme-colors, danger);
+                background-color: rgba(map-get($theme-colors, danger), .2);
+                color: map-get($theme-colors, $danger);
+            }
+        }
+    }
+}
+
+@media (max-width: map-get($grid-breakpoints, lg)) {
+    .with-submenu {padding-left: 0 !important; padding-top: 43px;}
+    .submenu {
+        left: 0;
+        z-index: 999;
+        bottom: unset;
+        width: 100%;
+        height: 32px;
+        ul {
+            background-color: darken($default-color, 5%);
+            display: none;}
+        a.submenu-toggle::after {
+            font-family: "Font Awesome 5 Free"; 
+            font-weight: bold; 
+            content: "\f053";
+            float: right;
+            transition: all .2s;
+        }
+        &.active {
+            ul {display: block;}
+            a.submenu-toggle::after {transform: rotate(-90deg);}
+        }
+    }
+}

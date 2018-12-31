@@ -54,6 +54,7 @@ class ServerScheduler extends Command
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         foreach (User::where('balance', '<=', 0)->whereNotNull('stripe_customer_id')->get() as $owner) {
             $total_price = $owner->servers()->sum('monthly_cost');
+            $total_price += $owner->balance * -1;
             $this->info("Making payment for user #{$owner->id} of \${$total_price}...");
             try {
                 $charge = Charge::create([
