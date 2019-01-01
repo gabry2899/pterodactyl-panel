@@ -14,8 +14,9 @@ class Invoice extends Model
      */
     public function downloadPdf()
     {
+        //return view('pdf.invoice', $this);
         $pdf = PDF::loadView('pdf.invoice', $this);
-        return $pdf->download("invoice-{$this->id}.pdf");
+        return $pdf->stream("invoice-{$this->id}.pdf");
     }
 
     /**

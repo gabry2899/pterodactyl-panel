@@ -54,17 +54,17 @@ class ServerScheduler extends Command
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         foreach (User::where('balance', '<=', 0)->whereNotNull('stripe_customer_id')->get() as $owner) {
             $total_price = $owner->servers()->sum('monthly_cost');
-            $total_price += $owner->balance * -1;
+            $total_price += round($owner->balance, 2) * -1;
             $this->info("Making payment for user #{$owner->id} of \${$total_price}...");
             try {
                 $charge = Charge::create([
                     'customer' => $owner->stripe_customer_id,
-                    'amount'   => $total_price * 100,
+                    'amount'   => intval($total_price * 100),
                     'currency' => 'usd'
                 ]);
                 if ($charge->paid) $owner->addBalance($total_price);
             } catch (\Exception $ex) {
-                $this->error("Failed to charge user #{$owner->id}: $ex->message");
+                $this->error("Failed to charge user #{$owner->id}: " . $ex->getMessage());
             }
         }
         foreach(Server::where('monthly_cost', '>', 0)->get() as $server) {
@@ -74,14 +74,14 @@ class ServerScheduler extends Command
                 try {
                     $this->suspensionService->toggle($server, SuspensionService::ACTION_UNSUSPEND);
                 } catch (\Exception $ex) {
-                    $this->error("Cannot unsuspend server #{$server->id}: $ex->message");
+                    $this->error("Cannot unsuspend server #{$server->id}: " . $ex->getMessage());
                 }
             } else if ($owner->balance <= 0 && $server->suspended == 0) {
                 $this->info("Suspending Server #{$server->id}");
                 try {
                     $this->suspensionService->toggle($server, SuspensionService::ACTION_SUSPEND);
                 } catch (\Exception $ex) {
-                    $this->error("Cannot unsuspend server {$server->id}: $ex->message");
+                    $this->error("Cannot unsuspend server {$server->id}: " . $ex->getMessage());
                 }
             }
         }
