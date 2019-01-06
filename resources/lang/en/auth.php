@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'marketing' => [
+        'title' => 'A cool marketing phrase goes here!',
+        'subtitle' => 'Cool uh?',
+    ],
+
     'not_authorized' => 'You are not authorized to perform this action.',
     'auth_error' => 'There was an error while attempting to login.',
     'authentication_required' => 'Authentication is required to continue.',
@@ -19,4 +24,5 @@ return [
     '2fa_failed' => 'The 2FA token provided was invalid.',
     'totp_failed' => 'There was an error while attempting to validate TOTP.',
     '2fa_must_be_enabled' => 'The administrator has required that 2-Factor Authentication be enabled for your account in order to use the Panel.',
+    'logout_title' => 'Are you sure you want to leave?',
 ];

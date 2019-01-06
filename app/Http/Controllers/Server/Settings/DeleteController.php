@@ -39,7 +39,7 @@ class DeleteController extends Controller
     public function index(Request $request)
     {
         $server = $request->attributes->get('server');
-        if ($server->owner_id != $request->user()->id) {
+        if ($server->owner_id != $request->user()->id && !$request->user()->root_admin) {
             return redirect()->back()->withErrors(trans('server.config.delete.errors.owner'));}
         $this->setRequest($request)->injectJavascript();
 
@@ -51,7 +51,7 @@ class DeleteController extends Controller
         $server = $request->attributes->get('server');
         if (time() - strtotime($server->created_at) < 3600) {
             return redirect()->back()->withErrors(trans('server.config.delete.errors.time'));}
-        if ($server->owner_id != $request->user()->id) {
+        if ($server->owner_id != $request->user()->id && !$request->user()->root_admin) {
             return redirect()->back()->withErrors(trans('server.config.delete.errors.owner'));}
         try {
             $this->deletionService->handle($server);

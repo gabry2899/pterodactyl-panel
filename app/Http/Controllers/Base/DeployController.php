@@ -37,7 +37,7 @@ class DeployController extends Controller
             'ram' => 'required|numeric|min:256|max:'.$nest->max_memory*1024,
             'disk' => 'required|numeric|min:1|max:'.$nest->max_disk,
         ]);
-        $allocation = $this->getAllocationId();
+        $allocation = $this->getAllocationId($request->ram);
         $cost = ($request->ram / 1024) * $nest->memory_monthly_cost;
         $cost += $request->disk * $nest->disk_monthly_cost;
         if (!$allocation) return redirect()->back()->withErrors(trans('base.errors.deploy.full'));
@@ -73,15 +73,15 @@ class DeployController extends Controller
         return redirect()->route('index');
     }
 
-    private function getAllocationId($attempt = 0)
+    private function getAllocationId($memory = 0, $attempt = 0)
     {
         if ($attempt > 6) return null;
         $node = Node::where('nodes.public', true)->where('nodes.maintenance_mode', false)
-            ->whereRaw('nodes.memory > (SELECT IFNULL(SUM(servers.memory), 0) FROM servers WHERE servers.node_id = nodes.id)')
+            ->whereRaw('nodes.memory - ? > (SELECT IFNULL(SUM(servers.memory), 0) FROM servers WHERE servers.node_id = nodes.id)', [$memory])
             ->whereRaw('nodes.disk > (SELECT IFNULL(SUM(servers.disk), 0) FROM servers WHERE servers.node_id = nodes.id)')->inRandomOrder()->first();
         if (!$node) return false;
         $allocation = $node->allocations()->where('server_id', null)->inRandomOrder()->first();
-        if (!$allocation) return getAllocationId($attempt+1);
+        if (!$allocation) return getAllocationId($memory, $attempt+1);
         return $allocation->id;
     }
 }

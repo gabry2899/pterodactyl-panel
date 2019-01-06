@@ -342,7 +342,9 @@ class BillingController extends Controller
     {
         $user = $request->user();
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-        Customer::retrieve($user->stripe_customer_id)->delete();
+        try {
+            Customer::retrieve($user->stripe_customer_id)->delete();
+        } catch (\Exception $ex) {}
         $user->stripe_customer_id = null;
         $user->stripe_card_brand = null;
         $user->stripe_card_last4 = null;

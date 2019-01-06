@@ -7,5 +7,12 @@
   },
   "scripts": {
     "build": "./node_modules/babel-cli/bin/babel.js public/themes/pterodactyl/js/frontend/files/src --source-maps --out-file public/themes/pterodactyl/js/frontend/files/filemanager.min.js"
+  },
+  "dependencies": {
+    "bootstrap": "^4.2.1",
+    "gulp": "^4.0.0",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.11.0",
+    "webpack-stream": "^5.2.1"
   }
 }
