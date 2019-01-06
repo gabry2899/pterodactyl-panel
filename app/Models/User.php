@@ -228,6 +228,13 @@ class User extends Model implements
         return $this->name_first . ' ' . $this->name_last;
     }
 
+    public function getAvatarUrlAttribute($size = 160)
+    {
+        $hash = md5(strtolower($this->email));
+        $default = "https://api.adorable.io/avatars/$size/$hash";
+        return "https://www.gravatar.com/avatar/$hash?s=$size&d=$default";
+    }
+
     /**
      * Returns all permissions that a user has.
      *

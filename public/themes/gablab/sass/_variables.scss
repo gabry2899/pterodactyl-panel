@@ -1,0 +1,33 @@
+// Color Settings
+$default-color:            #ffffffff;
+$primary-color:            #ff7675ff;
+$secondary-color:          #353b48ff;
+
+// Bootstrap Settings
+$theme-colors: (
+  "primary":                $primary-color,
+  "secondary":              $secondary-color,
+);
+
+$btn-border-radius:         0;
+$input-border-radius:       0;
+$dropdown-border-radius:    0;
+
+$alert-border-width:        0;
+$alert-bg-level:            -10;
+$alert-color-level:         0;
+$alert-border-radius:       0;
+
+$navbar-dark-color:         rgba($default-color, .9);
+$navbar-dark-hover-color:   $default-color;
+$navbar-dark-active-color:  $default-color;
+
+$breadcrumb-bg:             transparent;
+$breadcrumb-border-radius:  0;
+$breadcrumb-padding-x:      0;
+$breadcrumb-padding-y:      1.5em;
+
+$card-border-width:         0;
+$card-bg:                   darken($default-color, 2%);
+
+$font-family-base:          "Montserrat", "sans-serif";
