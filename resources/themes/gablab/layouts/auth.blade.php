@@ -24,9 +24,9 @@
         <div class="row mx-0">
             <div class="d-none d-sm-block col-sm-6 marketing-panel">
                 <div class="inner-panel">
-                    <h1>@lang('gablab.auth.marketing.title')</h1>
+                    <h1>@lang('auth.marketing.title')</h1>
                     <p>
-                        @lang('gablab.auth.marketing.details')
+                        @lang('auth.marketing.subtitle')
                     </p>
                 </div>
             </div>

@@ -21,8 +21,6 @@ $(document).ready(function () {
         var memoryUse = parseInt(proc.data.memory.total / (1024 * 1024));
         $("[data-action='cpu']").text(cpuUse);
         $("[data-action='memory']").text(memoryUse);
-        console.log(proc);
-        updateServerPowerControls(proc.status);
     };
 
     function printToTerminal(line)
@@ -67,7 +65,6 @@ $(document).ready(function () {
     });
 
     Socket.on('initial status', function (data) {
-        ConsoleServerStatus = data.status;
         updateServerPowerControls(data.status);
 
         if (data.status === 1 || data.status === 2) {
@@ -76,7 +73,6 @@ $(document).ready(function () {
     });
 
     Socket.on('status', function (data) {
-        ConsoleServerStatus = data.status;
         updateServerPowerControls(data.status);
     });
 

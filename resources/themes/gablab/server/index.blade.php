@@ -29,7 +29,7 @@
         <div class="col-12 col-md-8">
             <div id="terminal" style="heigth: 500px;" class="mb-3"></div>
             <div class="text-center mb-3">
-                @can('power-start', $server)<button class="btn btn-success disabled" data-attr="power" data-action="start">Start</button>@endcan
+                @can('power-start', $server)<button class="btn btn-success" data-attr="power" data-action="start">Start</button>@endcan
                 @can('power-restart', $server)<button class="btn btn-primary disabled" data-attr="power" data-action="restart">Restart</button>@endcan
                 @can('power-stop', $server)<button class="btn btn-danger disabled" data-attr="power" data-action="stop">Stop</button>@endcan
                 @can('power-kill', $server)<button class="btn btn-danger disabled" data-attr="power" data-action="kill">Kill</button>@endcan

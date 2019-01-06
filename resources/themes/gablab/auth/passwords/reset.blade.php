@@ -15,7 +15,7 @@
     @endif
     <form id="resetForm" action="{{ route('auth.reset.post') }}" method="POST" class="mb-2">
         <div class="form-group has-feedback">
-            <input type="email" name="email" class="form-control input-lg" value="{{ $email ?? old('email') }}" required autofocus placeholder="@lang('gablab.strings.email')">
+            <input type="email" name="email" class="form-control input-lg" value="{{ $email ?? old('email') }}" required autofocus placeholder="@lang('strings.email')">
         </div>
         <div class="form-group has-feedback">
             <input type="password" name="password" class="form-control input-lg" id="password" required placeholder="@lang('strings.password')">
@@ -25,7 +25,7 @@
         </div>
         {!! csrf_field() !!}
         <input type="hidden" name="token" value="{{ $token }}" />
-        <button type="submit" class="btn btn-block g-recaptcha btn-primary" @if(config('recaptcha.enabled')) data-sitekey="{{ config('recaptcha.website_key') }}" data-callback='onSubmit' @endif>@lang('gablab.auth.passwords.reset.reset_password')</button>
+        <button type="submit" class="btn btn-block g-recaptcha btn-primary" @if(config('recaptcha.enabled')) data-sitekey="{{ config('recaptcha.website_key') }}" data-callback='onSubmit' @endif>@lang('auth.reset_password')</button>
     </form>
 @endsection
 

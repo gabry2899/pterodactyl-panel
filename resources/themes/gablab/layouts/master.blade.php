@@ -37,9 +37,9 @@
                     </a>
                     <div class="dropdown-menu">
                         @if (Auth::user()->root_admin)
-                            <a class="dropdown-item" href="{{ route('admin.index') }}"><i class="fas fa-cog mr-2"></i>Admin Panel</a>
+                            <a class="dropdown-item" href="{{ route('admin.index') }}"><i class="fas fa-cog mr-2"></i>@lang('strings.admin_cp')</a>
                         @endif
-                        <a class="dropdown-item" href="{{ route('auth.logout') }}" id="logoutButton"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+                        <a class="dropdown-item" href="{{ route('auth.logout') }}" id="logoutButton"><i class="fas fa-sign-out-alt mr-2"></i>@lang('strings.logout')</a>
                     </div>
                 </li>
             </ul>
@@ -52,20 +52,20 @@
                 <span class="bar bar-bot"></span>
             </a>
             <ul>
-                <li class="{{ Route::currentRouteName() !== 'index' && !isset($server) ?: 'active' }}" data-toggle="tooltip" data-placement="right" title="My Servers">
-                    <a href="{{ route('index')}}"><i class="fas fa-server"></i><span>My Servers</span></a>
+                <li class="{{ Route::currentRouteName() !== 'index' && !isset($server) ?: 'active' }}" data-toggle="tooltip" data-placement="right" title="@lang('navigation.account.my_servers')">
+                    <a href="{{ route('index')}}"><i class="fas fa-server"></i><span>@lang('navigation.account.my_servers')</span></a>
                 </li>
-                <li class="{{ Route::currentRouteName() !== 'account' ?: 'active' }}" data-toggle="tooltip" data-placement="right" title="My Account">
-                    <a href="{{ route('account') }}"><i class="fas fa-cog"></i><span>My Account</span></a>
+                <li class="{{ Route::currentRouteName() !== 'account' ?: 'active' }}" data-toggle="tooltip" data-placement="right" title="@lang('navigation.account.my_account')">
+                    <a href="{{ route('account') }}"><i class="fas fa-cog"></i><span>@lang('navigation.account.my_account')</span></a>
                 </li>
-                <li class="{{ Route::currentRouteName() !== 'account.billing' ?: 'active' }}" data-toggle="tooltip" data-placement="right" title="Billing">
-                    <a href="{{ route('account.billing') }}"><i class="fas fa-credit-card"></i><span>Billing</span></a>
+                <li class="{{ Route::currentRouteName() !== 'account.billing' ?: 'active' }}" data-toggle="tooltip" data-placement="right" title="@lang('navigation.account.billing')">
+                    <a href="{{ route('account.billing') }}"><i class="fas fa-credit-card"></i><span>@lang('navigation.account.billing')</span></a>
                 </li>
-                <li class="{{ Route::currentRouteName() !== 'account.security' ?: 'active' }}" data-toggle="tooltip" data-placement="right" title="Security">
-                    <a href="{{ route('account.security')}}"><i class="fas fa-key"></i><span>Security</span></a>
+                <li class="{{ Route::currentRouteName() !== 'account.security' ?: 'active' }}" data-toggle="tooltip" data-placement="right" title="@lang('navigation.account.security_controls')">
+                    <a href="{{ route('account.security')}}"><i class="fas fa-key"></i><span>@lang('navigation.account.security_controls')</span></a>
                 </li>
-                <li class="{{ (Route::currentRouteName() !== 'account.api' && Route::currentRouteName() !== 'account.api.new') ?: 'active' }}" data-toggle="tooltip" data-placement="right" title="API">
-                    <a href="{{ route('account.api')}}"><i class="fas fa-network-wired"></i><span>API</span></a>
+                <li class="{{ (Route::currentRouteName() !== 'account.api' && Route::currentRouteName() !== 'account.api.new') ?: 'active' }}" data-toggle="tooltip" data-placement="right" title="@lang('navigation.account.api_access')">
+                    <a href="{{ route('account.api')}}"><i class="fas fa-network-wired"></i><span>@lang('navigation.account.api_access')</span></a>
                 </li>
             </ul>
         </div>
@@ -74,21 +74,21 @@
             <div class="submenu">
                 <a href="#" onclick="$(this).parent().toggleClass('active'); return false;" class="submenu-toggle">{{ $server->name }}</a>
                 <ul>
-                    <li><a href="{{ route('server.index', $server->uuidShort) }}" class="{{ Route::currentRouteName() !== 'server.index' ?: 'active' }}"><i class="fas fa-terminal"></i>Console</a></li>
+                    <li><a href="{{ route('server.index', $server->uuidShort) }}" class="{{ Route::currentRouteName() !== 'server.index' ?: 'active' }}"><i class="fas fa-terminal"></i>@lang('navigation.server.console')</a></li>
                     @can('list-files', $server)
-                        <li><a href="{{ route('server.files.index', $server->uuidShort) }}" class="{{ !starts_with(Route::currentRouteName(), 'server.files') ?: 'active' }}"><i class="far fa-file"></i>File Manager</a></li>
+                        <li><a href="{{ route('server.files.index', $server->uuidShort) }}" class="{{ !starts_with(Route::currentRouteName(), 'server.files') ?: 'active' }}"><i class="far fa-file"></i>@lang('navigation.server.file_management')</a></li>
                     @endcan
                     @can('list-subusers', $server)
-                        <li><a href="{{ route('server.subusers', $server->uuidShort) }}" class="{{ !starts_with(Route::currentRouteName(), 'server.subusers') ?: 'active' }}"><i class="fas fa-users"></i>Subusers</a></li>
+                        <li><a href="{{ route('server.subusers', $server->uuidShort) }}" class="{{ !starts_with(Route::currentRouteName(), 'server.subusers') ?: 'active' }}"><i class="fas fa-users"></i>@lang('navigation.server.subusers')</a></li>
                     @endcan
                     @can('list-schedules', $server)
-                        <li><a href="{{ route('server.schedules', $server->uuidShort) }}" class="{{ !starts_with(Route::currentRouteName(), 'server.schedules') ?: 'active' }}"><i class="far fa-clock"></i>Schedules</a></li>
+                        <li><a href="{{ route('server.schedules', $server->uuidShort) }}" class="{{ !starts_with(Route::currentRouteName(), 'server.schedules') ?: 'active' }}"><i class="far fa-clock"></i>@lang('navigation.server.schedules')</a></li>
                     @endcan
                     @can('view-databases', $server)
-                        <li><a href="{{ route('server.databases.index', $server->uuidShort) }}" class="{{ !starts_with(Route::currentRouteName(), 'server.databases') ?: 'active' }}"><i class="fas fa-database"></i>Databases</a></li>
+                        <li><a href="{{ route('server.databases.index', $server->uuidShort) }}" class="{{ !starts_with(Route::currentRouteName(), 'server.databases') ?: 'active' }}"><i class="fas fa-database"></i>@lang('navigation.server.databases')</a></li>
                     @endcan
                     @if (Auth::user()->root_admin || Auth::user()->id == $server->owner_id)
-                        <li><a href="{{ route('server.settings.delete', $server->uuidShort) }}" class="delete {{ !starts_with(Route::currentRouteName(), 'server.settings.delete') ?: 'active' }}"><i class="far fa-trash-alt"></i>Delete Server</a></li>
+                        <li><a href="{{ route('server.settings.delete', $server->uuidShort) }}" class="delete {{ !starts_with(Route::currentRouteName(), 'server.settings.delete') ?: 'active' }}"><i class="far fa-trash-alt"></i>@lang('navigation.server.delete')</a></li>
                     @endif
                 </ul>
             </div>
@@ -121,7 +121,7 @@
 
         <div class="deploy-section">
             @section('deploy')  
-                <a href="{{ route('deploy') }}" class="btn btn-primary btn-deploy" data-toggle="tooltip" title="Deploy new server" data-placement="left"><i class="fas fa-plus"></i></a>
+                <a href="{{ route('deploy') }}" class="btn btn-primary btn-deploy" data-toggle="tooltip" title="@lang('navigation.account.deploy')" data-placement="left"><i class="fas fa-plus"></i></a>
             @show    
         </div> 
 
@@ -143,12 +143,12 @@
 
                         var that = this;
                         swal({
-                            title: "@lang('gablab.strings.logout.details')",
+                            title: "@lang('auth.logout_title')",
                             type: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#d9534f',
                             cancelButtonColor: '#d33',
-                            confirmButtonText: "@lang('gablab.strings.logout.submit')"
+                            confirmButtonText: "@lang('strings.logout')"
                         }, function () {
                             window.location = $(that).attr('href');
                         });
