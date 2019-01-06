@@ -48,14 +48,14 @@
             <tr>
                 <td class="text-center">{{ $id }}</td>
                 <td>Platform Credits</td>
-                <td class="text-center">${{ number_format($amount, 2) }}</td>
+                <td class="text-center">@lang('currecy.sym') {{ number_format($amount, 2) }}</td>
             </tr>
             <tr>
                 <td colspan="2" class="text-right">
                     Total Amount:
                 </td>
                 <td class="text-center">
-                    $ {{ number_format($amount, 2) }}
+                    @lang('currecy.sym') {{ number_format($amount, 2) }}
                 </td>
             </tr>
         </table>

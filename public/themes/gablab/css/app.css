@@ -6984,31 +6984,31 @@ a:hover {
     transform: scale(1.5);
     opacity: 0; } }
 
-.login-page .row {
+.login-page > .row {
   min-height: 100vh; }
-  .login-page .row .marketing-panel, .login-page .row .login-panel {
+  .login-page > .row .marketing-panel, .login-page > .row .login-panel {
     display: flex !important;
     align-items: center;
     justify-content: center;
     padding: 0 5em; }
-    .login-page .row .marketing-panel .inner-panel, .login-page .row .login-panel .inner-panel {
+    .login-page > .row .marketing-panel .inner-panel, .login-page > .row .login-panel .inner-panel {
       width: 100%; }
-  .login-page .row .marketing-panel {
+  .login-page > .row .marketing-panel {
     background-color: #ff7675ff;
     color: #ffffffff; }
-  .login-page .row .login-panel > .inner-panel {
+  .login-page > .row .login-panel > .inner-panel {
     max-width: 400px;
     margin: 0 auto; }
-  .login-page .row .logo {
+  .login-page > .row .logo {
     display: block;
     font-size: 280%;
     text-align: center;
     color: #ff7675ff;
     margin-bottom: 1em; }
-    .login-page .row .logo::before {
+    .login-page > .row .logo::before {
       font-weight: bold;
       content: "Gab"; }
-    .login-page .row .logo::after {
+    .login-page > .row .logo::after {
       content: "Lab"; }
 
 .with-sidebar {

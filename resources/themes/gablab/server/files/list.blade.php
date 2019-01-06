@@ -1,17 +1,17 @@
 <div class="d-flex mb-3">
     <div class="d-block">
-        <div class="font-weight-strong" style="font-size: 70%;">Current directory:</div>
+        <div class="font-weight-strong" style="font-size: 70%;">@lang('server.files.current_directory')</div>
         <code>/home/container{{ $directory['header'] }}</code>
     </div>
     <div class="ml-auto btn-group">
         <a href="/server/{{ $server->uuidShort }}/files/add/@if($directory['header'] !== '')?dir={{ $directory['header'] }}@endif" class="btn btn-primary">
-            <i class="far fa-file mr-2"></i>New File
+            <i class="far fa-file mr-2"></i>@lang('server.files.new_file')
         </a>
         <button class="btn btn-primary" data-action="add-folder">
-            <i class="far fa-folder mr-2"></i>New Folder
+            <i class="far fa-folder mr-2"></i>@lang('server.files.new_folder')
         </button>
         <label class="btn btn-info mb-0">
-            <span><i class="fas fa-upload"></i>Upload</span>
+            <span><i class="fas fa-upload"></i>@lang('server.files.upload')</span>
             <input type="file" id="files_touch_target" class="d-none">
         </label>
         <div class="dropdown d-flex">

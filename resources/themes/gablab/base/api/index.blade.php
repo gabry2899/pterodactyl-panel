@@ -2,41 +2,39 @@
 @extends('layouts.master')
 
 @section('title')
-    Api Access
+    @lang('navigation.account.api_access')
 @endsection
 
 @section('content-header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-            <li class="breadcrumb-item active">Api Access</li>
+            <li class="breadcrumb-item active">@lang('navigation.account.api_access')</li>
         </ol>
     </nav>
 @endsection
 
 @section('content')
     <div class="card card-body">
-        <h3>Api Access</h3>
+        <h3>@lang('base.api.header')</h3>
         <table class="table table-responsive">
             <tr>
-                <th style="width: 100%;">Key</th>
-                <th style="min-width: 200px;">Memo</th>
-                <th style="min-width: 180px;">Last Used</th>
-                <th style="min-width: 180px;">Created</th>
+                <th style="width: 100%;">@lang('strings.key')</th>
+                <th style="min-width: 200px;">@lang('strings.memo')</th>
+                <th style="min-width: 180px;">@lang('strings.last_activity')</th>
+                <th style="min-width: 180px;">@lang('strings.created_at')</th>
                 <th></th>
             </tr>
             @if (count($keys) == 0)
                 <tr>
                     <td colspan=5 class="text-center py-5">
-                        You have no api keys here.<br />
-                        Click the bottom right "+" button to create one.
+                        @lang('base.api.no_keys')
                     </td>
                 </tr>
             @endif
             @foreach($keys as $key)
                 <tr>
                     <td>
-                        <code class="toggle-display" style="cursor:pointer" data-toggle="tooltip" data-placement="right" title="Click to Reveal">
+                        <code class="toggle-display" style="cursor:pointer" data-toggle="tooltip" data-placement="right" title="@lang('base.api.click_to_reveal')">
                             <i class="fa fa-key"></i> &bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;
                         </code>
                         <code class="d-none" data-attr="api-key">
@@ -64,7 +62,7 @@
 @endsection
 
 @section('deploy')
-    <a href="{{ route('account.api.new') }}" class="btn btn-primary btn-deploy" data-toggle="tooltip" title="Create new API key" data-placement="left"><i class="fas fa-plus"></i></a>
+    <a href="{{ route('account.api.new') }}" class="btn btn-primary btn-deploy" data-toggle="tooltip" title="@lang('base.api.create_new')" data-placement="left"><i class="fas fa-plus"></i></a>
 @endsection
 
 @section('footer-scripts')
@@ -81,12 +79,12 @@
                 event.preventDefault();
                 swal({
                     type: 'error',
-                    title: 'Revoke API Key',
-                    text: 'Once this API key is revoked any applications currently using it will stop working.',
+                    title: "@lang('base.api.revoke_title')",
+                    text: "@lang('base.api.revoke_description')",
                     showCancelButton: true,
                     allowOutsideClick: true,
                     closeOnConfirm: false,
-                    confirmButtonText: 'Revoke',
+                    confirmButtonText: "@lang('strings.revoke')",
                     confirmButtonColor: '#d9534f',
                     showLoaderOnConfirm: true
                 }, function () {
@@ -100,14 +98,14 @@
                         swal({
                             type: 'success',
                             title: '',
-                            text: 'API Key has been revoked.'
+                            text: "@lang('base.api.revoke_success')"
                         });
                         self.parent().parent().slideUp();
                     }).fail(function (jqXHR) {
                         swal({
                             type: 'error',
                             title: 'Whoops!',
-                            text: 'An error occurred while attempting to revoke this key.'
+                            text: "@lang('base.api.revoke_error')"
                         });
                     });
                 });

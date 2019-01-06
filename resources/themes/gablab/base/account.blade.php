@@ -1,14 +1,13 @@
 @extends('layouts.master')
 
 @section('title')
-    Account
+    @lang('navigation.account.my_account')
 @endsection
 
 @section('content-header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-            <li class="breadcrumb-item active">Account</li>
+            <li class="breadcrumb-item active">@lang('navigation.account.my_account')</li>
         </ol>
     </nav>
 @endsection
@@ -17,25 +16,25 @@
     <div class="row">
         <div class="col-12 col-md-6">
             <div class="card card-body mb-4">
-                <h3>Update Password</h3>
+                <h3>@lang('base.account.update_pass')</h3>
                 <form action="{{ route('account') }}" method="post">
                     <div class="form-group">
-                        <label for="current_password" class="control-label">Current Password</label>
+                        <label for="current_password" class="control-label">@lang('base.account.current_password')</label>
                         <div>
                             <input type="password" class="form-control" name="current_password" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="new_password" class="control-label">New password</label>
+                        <label for="new_password" class="control-label">@lang('base.account.new_password')</label>
                         <div>
                             <input type="password" class="form-control" name="new_password" />
                             <p class="text-muted small no-margin">
-                                Passwords must contain at least one uppercase, lowercase, and numeric character and must be at least 8 characters in length.
+                                @lang('base.account.password_help')
                             </p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="new_password_again" class="control-label">Confirm Password</label>
+                        <label for="new_password_again" class="control-label">@lang('base.account.new_password_again')</label>
                         <div>
                             <input type="password" class="form-control" name="new_password_confirmation" />
                         </div>
@@ -43,14 +42,14 @@
                     <div class="text-right">
                         {!! csrf_field() !!}
                         <input type="hidden" name="do_action" value="password" />
-                        <input type="submit" class="btn btn-outline-primary" value="Update Password" />
+                        <input type="submit" class="btn btn-outline-primary" value="@lang('base.account.update_pass')" />
                     </div>
                 </form>
             </div>
         </div>
         <div class="col-12 col-md-6">
             <div class="card card-body mb-4">
-                <h3>Update Identity</h3>
+                <h3>@lang('base.account.update_identity')</h3>
                 <form action="{{ route('account') }}" method="post">
                     <div class="row">
                         <div class="form-group col-6">
@@ -86,12 +85,12 @@
                     <div class="text-right">
                         {!! csrf_field() !!}
                         <input type="hidden" name="do_action" value="identity" />
-                        <button type="submit" class="btn btn-outline-primary">Update</button>
+                        <button type="submit" class="btn btn-outline-primary">@lang('base.account.update_identity')</button>
                     </div>
                 </form>
             </div>
             <div class="card card-body">
-                <h3>Update Email</h3>
+                <h3>@lang('base.account.update_email')</h3>
                 <form action="{{ route('account') }}" method="post">
                     <div class="form-group">
                         <label for="new_email" class="control-label">@lang('base.account.new_email')</label>

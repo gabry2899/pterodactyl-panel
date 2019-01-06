@@ -1,16 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    @lang('server.config.database.header')
+    @lang('navigation.server.databases')
 @endsection
 
 @section('content-header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Servers</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('index') }}">@lang('navigation.account.my_servers')</a></li>
             <li class="breadcrumb-item"><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
-            <li class="breadcrumb-item active">Databases</li>
+            <li class="breadcrumb-item active">@lang('navigation.server.databases')</li>
         </ol>
     </nav>
 @endsection
@@ -65,15 +64,15 @@
     @if($allowCreation && Gate::allows('create-database', $server))
         <div class="col-12 col-lg-4">
             <div class="card card-body">
-                <h3>Create New Database</h3>
+                <h3>@lang('server.config.database.create_title')</h3>
                 @if($overLimit)
                     <div class="pb-5">
-                        You are currently using <strong>{{ count($databases) }}</strong> of your <strong>{{ $server->database_limit ?? '∞' }}</strong> allowed databases.
+                        @lang('server.config.database.using', ['used' => count($databases), 'max' => $server->database_limit ?? '∞'])
                     </div>
                 @else
                     <form action="{{ route('server.databases.new', $server->uuidShort) }}" method="POST">
                         <div class="form-group">
-                            <label for="pDatabaseName" class="control-label">Database</label>
+                            <label for="pDatabaseName" class="control-label">@lang('strings.database')</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text">s{{ $server->id }}_</span>
@@ -82,14 +81,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="pRemote" class="control-label">Connections</label>
+                            <label for="pRemote" class="control-label">@lang('strings.connections')</label>
                             <input id="pRemote" type="text" name="remote" class="form-control" value="%" />
-                            <p class="text-muted small">This should reflect the IP address that connections are allowed from. Uses standard MySQL notation. If unsure leave as <code>%</code>.</p>
+                            <p class="text-muted small">@lang('server.config.database.connections_hint')</p>
                         </div>
-                        <p class="text-muted small">You are currently using <strong>{{ count($databases) }}</strong> of <strong>{{ $server->database_limit ?? '&infin;' }}</strong> databases. A username and password for this database will be randomly generated after form submission.</p>
+                        <p class="text-muted small">
+                            @lang('server.config.database.using', ['used' => count($databases), 'max' => $server->database_limit ?? '∞'])
+                        </p>
                         <div class="text-right">
                             {!! csrf_field() !!}
-                            <input type="submit" class="btn btn-primary" value="Create Database" />
+                            <input type="submit" class="btn btn-primary" value="@lang('strings.create')" />
                         </div>
                     </form>
                 @endif

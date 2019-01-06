@@ -1,16 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    @lang('server.schedules.new.header')
+    @lang('navigation.server.subusers')
 @endsection
 
 @section('content-header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Servers</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('index') }}">@lang('navigation.account.my_servers')</a></li>
             <li class="breadcrumb-item"><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
-            <li class="breadcrumb-item active">Users</li>
+            <li class="breadcrumb-item active">@lang('navigation.server.subusers')</li>
         </ol>
     </nav>
 @endsection
@@ -18,9 +17,9 @@
 @section('content')
     <div class="card card-body">
         <div class="d-flex mb-3">
-            <h3 class="d-block py-1 my-0">@lang('server.schedule.current')</h3>
+            <h3 class="d-block py-1 my-0">@lang('server.users.title')</h3>
             <div class="ml-auto">
-                <a href="{{ route('server.subusers.new', $server->uuidShort) }}" class="btn btn-primary">Create New</a>
+                <a href="{{ route('server.subusers.new', $server->uuidShort) }}" class="btn btn-primary">@lang('strings.new')</a>
             </div>
         </div>
         <table class="table table-hover">
@@ -78,8 +77,8 @@
             var self = $(this);
             swal({
                 type: 'warning',
-                title: 'Delete Subuser',
-                text: 'This will immediately remove this user from this server and revoke all permissions.',
+                title: "@lang('server.subusers.delete.title')",
+                text: "@lang('server.subusers.delete.description')",
                 showCancelButton: true,
                 showConfirmButton: true,
                 closeOnConfirm: false,
@@ -99,11 +98,11 @@
                     swal({
                         type: 'success',
                         title: '',
-                        text: 'Subuser was successfully deleted.'
+                        text: "@lang('server.subusers.delete.success')"
                     });
                 }).fail(function (jqXHR) {
                     console.error(jqXHR);
-                    var error = 'An error occurred while trying to process this request.';
+                    var error = "@lang('server.subusers.delete.error')";
                     if (typeof jqXHR.responseJSON !== 'undefined' && typeof jqXHR.responseJSON.error !== 'undefined') {
                         error = jqXHR.responseJSON.error;
                     }

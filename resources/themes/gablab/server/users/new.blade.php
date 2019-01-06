@@ -1,22 +1,16 @@
-{{-- Pterodactyl - Panel --}}
-{{-- Copyright (c) 2015 - 2017 Dane Everitt <dane@daneeveritt.com> --}}
-
-{{-- This software is licensed under the terms of the MIT license. --}}
-{{-- https://opensource.org/licenses/MIT --}}
 @extends('layouts.master')
 
 @section('title')
-    @lang('server.users.new.header')
+    @lang('navigation.server.subusers_new')
 @endsection
 
 @section('content-header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Servers</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('index') }}">@lang('navigation.account.my_servers')</a></li>
             <li class="breadcrumb-item"><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('server.subusers', $server->uuidShort) }}">Users</a></li>
-            <li class="breadcrumb-item active">New</li>
+            <li class="breadcrumb-item"><a href="{{ route('server.subusers', $server->uuidShort) }}">@lang('navigation.server.subusers')</a></li>
+            <li class="breadcrumb-item active">@lang('navigation.server.new_user')</li>
         </ol>
     </nav>
 @endsection

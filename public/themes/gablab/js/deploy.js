@@ -6,7 +6,7 @@ $(document).ready(function() {
     {
         var cost = $disk.val()*$disk.data('cost');
         cost += $ram.val()/1024*$ram.data('cost');
-        $price_label.text("$"+cost.toFixed(2)+"/month");
+        $price_label.text(cost.toFixed(2));
     };
     function change_game()
     {

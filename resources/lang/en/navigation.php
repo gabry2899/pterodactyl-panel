@@ -1,14 +1,13 @@
 <?php
 
 return [
-    'home' => 'Home',
     'account' => [
-        'my_account' => 'My Account',
-        'security_controls' => 'Security Controls',
-        'api_access' => 'Account API',
         'my_servers' => 'My Servers',
+        'my_account' => 'My Account',
         'billing' => 'Billing',
-        'deploy' => 'Deploy new server',
+        'security_controls' => 'Security Controls',
+        'api_access' => 'API Access',
+        'deploy' => 'Deploy Server',
     ],
     'server' => [
         'console' => 'Console',
@@ -16,6 +15,9 @@ return [
         'subusers' => 'Subusers',
         'schedules' => 'Schedules',
         'databases' => 'Databases',
-        'delete' => 'Delete Server',
-    ],
+        'delete' => 'Delete',
+        'new_file' => 'New File',
+        'new_user' => 'New User',
+        'new_task' => 'New Task',
+    ]
 ];

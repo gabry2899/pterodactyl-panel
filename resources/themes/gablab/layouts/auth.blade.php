@@ -16,8 +16,9 @@
         <meta name="theme-color" content="#0e4688">
 
         @section('scripts')
-            
             {!! Theme::css('css/app.css?t={cache-version}') !!}
+
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
         @show
     </head>
     <body class="login-page">

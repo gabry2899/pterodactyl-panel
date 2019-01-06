@@ -1,16 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    @lang('server.schedules.new.header')
+    {{ $schedule->name }}
 @endsection
 
 @section('content-header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Servers</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('index') }}">@lang('navigation.account.my_servers')</a></li>
             <li class="breadcrumb-item"><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('server.schedules', $server->uuidShort) }}">Schedules</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('server.schedules', $server->uuidShort) }}">@lang('navigation.server.schedules')</a></li>
             <li class="breadcrumb-item active">{{ $schedule->name }}</li>
         </ol>
     </nav>
@@ -111,8 +110,10 @@
 
 @section('footer-scripts')
     @parent
+    <script type="application/javascript">
+        $.fn.select2 = function() {};
+    </script>
     {!! Theme::js('js/frontend/server.socket.js') !!}
-    {!! Theme::js('vendor/select2/select2.full.min.js') !!}
     {!! Theme::js('js/frontend/tasks/view-actions.js') !!}
     <script>
         $(document).ready(function () {

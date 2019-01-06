@@ -1,10 +1,15 @@
 <?php
-
 return [
     'index' => [
         'title' => 'Viewing Server :name',
         'header' => 'Server Console',
         'header_sub' => 'Control your server in real time.',
+        'buttons' => [
+            'start' => 'Start',
+            'restart' => 'Restart',
+            'stop' => 'Stop',
+            'kill' => 'Kill',
+        ]
     ],
     'schedule' => [
         'header' => 'Schedule Manager',
@@ -44,6 +49,7 @@ return [
         'task_help' => 'Times for tasks are relative to the previously defined task. Each schedule may have no more than 5 tasks assigned to it and tasks may not be scheduled more than 15 minutes apart.',
     ],
     'tasks' => [
+        'none' => 'You haven\'t got any tasks for this server.',
         'task_created' => 'Successfully created a new task on the Panel.',
         'task_updated' => 'Task has successfully been updated. Any currently queued task actions will be cancelled and run again at the next defined time.',
         'header' => 'Scheduled Tasks',
@@ -85,7 +91,7 @@ return [
         ],
     ],
     'users' => [
-        'header' => 'Manage Users',
+        'title' => 'Manage Users',
         'header_sub' => 'Control who can access your server.',
         'configure' => 'Configure Permissions',
         'list' => 'Accounts with Access',
@@ -267,6 +273,10 @@ return [
             'invalid_mime' => 'This type of file cannot be edited via the Panel\'s built-in editor.',
             'max_size' => 'This file is too large to edit via the Panel\'s built-in editor.',
         ],
+        'current_directory' => 'Current Directory',
+        'new_file' => 'New File',
+        'new_folder' => 'New Folder',
+        'upload' => 'Upload',
         'header' => 'File Manager',
         'header_sub' => 'Manage all of your files directly from the web.',
         'loading' => 'Loading initial file structure, this could take a few seconds.',

@@ -1,16 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    @lang('server.schedule.header')
+    @lang('navigation.server.schedules')
 @endsection
 
 @section('content-header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Servers</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('index') }}">@lang('navigation.account.my_servers')</a></li>
             <li class="breadcrumb-item"><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
-            <li class="breadcrumb-item active">Schedules</li>
+            <li class="breadcrumb-item active">@lang('navigation.server.schedules')</li>
         </ol>
     </nav>
 @endsection
@@ -20,7 +19,7 @@
     <div class="d-flex mb-3">
         <h3 class="d-block py-1 my-0">@lang('server.schedule.current')</h3>
         <div class="ml-auto">
-            <a href="{{ route('server.schedules.new', $server->uuidShort) }}" class="btn btn-primary">Create New</a>
+            <a href="{{ route('server.schedules.new', $server->uuidShort) }}" class="btn btn-primary">@lang('strings.new')</a>
         </div>
     </div>
     <table class="table table-hover">
@@ -34,7 +33,7 @@
         </tr>
         @if (count($schedules) == 0)
             <tr>
-                <td colspan="6" class="text-center py-5">There are no schedules for this server yet!</td>
+                <td colspan="6" class="text-center py-5">@lang('server.tasks.none')</td>
             </tr>
         @endif
         @foreach($schedules as $schedule)

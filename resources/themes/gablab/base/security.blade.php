@@ -2,14 +2,13 @@
 @extends('layouts.master')
 
 @section('title')
-    Security
+    @lang('navigation.account.security_controls')
 @endsection
 
 @section('content-header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-            <li class="breadcrumb-item active">Security</li>
+            <li class="breadcrumb-item active">@lang('navigation.account.security_controls')</li>
         </ol>
     </nav>
 @endsection
@@ -18,13 +17,13 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card card-body">
-                <h3>Active Sessions</h3>
+                <h3>@lang('base.security.active_sessions')</h3>
                 @if(!is_null($sessions))
                     <table class="table table-hover">
                         <tr>
                             <th>#</th>
-                            <th>IP Address</th>
-                            <th>Last Activity</th>
+                            <th>@lang('strings.ip_address')</th>
+                            <th>@lang('strings.last_activity')</th>
                             <th></th>
                         </tr>
                         @foreach($sessions as $session)
@@ -33,19 +32,19 @@
                                 <td>{{ $session->ip_address }}</td>
                                 <td>{{ Carbon::createFromTimestamp($session->last_activity)->diffForHumans() }}</td>
                                 <td class="text-right">
-                                    <a href="{{ route('account.security.revoke', $session->id) }}"><i class="fas fa-trash mr-2"></i>Revoke</a>
+                                    <a href="{{ route('account.security.revoke', $session->id) }}"><i class="fas fa-trash mr-2"></i>@lang('strings.revoke')</a>
                                 </td>
                             </tr>
                         @endforeach
                     </table>
                 @else
-                    <p class="text-muted">@lang('Your host has not enabled the ability to manage account sessions via this interface.')</p>
+                    <p class="text-muted">@lang('base.security.sessions_disabled')</p>
                 @endif
             </div>
         </div>
         <div class="col-md-6">
             <div class="card card-body">
-                <h3>Two Factor Authentication</h3>
+                <h3>@lang('base.security.2fa')</h3>
                 @if(Auth::user()->use_totp)
                 <form action="{{ route('account.security.totp') }}" method="post">
                     <div class="box-body">
@@ -66,12 +65,10 @@
                 </form>
                 @else
                 <form action="#" method="post" id="do_2fa">
-                    <p>
-                        2fa is now disabled.
-                    </p>
+                    <p>@lang('base.security.2fa_disabled')</p>
                     <div class="text-right">
                         {!! csrf_field() !!}
-                        <button type="submit" class="btn btn-outline-primary">Enable Now</button>
+                        <button type="submit" class="btn btn-outline-primary">@lang('base.security.enable_2fa')</button>
                     </div>
                 </form>
                 @endif

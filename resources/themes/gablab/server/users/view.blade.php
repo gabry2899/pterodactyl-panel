@@ -1,16 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    @lang('server.users.new.header')
+    @lang('navigation.server.new_user')
 @endsection
 
 @section('content-header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Servers</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('index') }}">@lang('navigation.account.my_servers')</a></li>
             <li class="breadcrumb-item"><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('server.subusers', $server->uuidShort) }}">Users</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('server.subusers', $server->uuidShort) }}">@lang('navigation.server.subusers')</a></li>
             <li class="breadcrumb-item active">{{ $subuser->user->email }}</li>
         </ol>
     </nav>

@@ -1,30 +1,28 @@
-.login-page {
-    .row {
-        min-height: 100vh;
-        .marketing-panel, .login-panel {
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-            padding: 0 5em;
-            .inner-panel {width: 100%;}
-        }
-        .marketing-panel {
-            background-color: $primary-color;
-            color: $default-color;}
-        .login-panel > .inner-panel {
-            max-width: 400px;
-            margin: 0 auto;}
-        .logo {
-            display: block;
-            font-size: 280%;
-            text-align: center;
-            color: $primary-color;
-            margin-bottom: 1em;
-            &::before {
-                font-weight: bold;
-                content: "Gab";}
-            &::after {
-                content: "Lab";}
-        }
+.login-page > .row {
+    min-height: 100vh;
+    .marketing-panel, .login-panel {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 0 5em;
+        .inner-panel {width: 100%;}
+    }
+    .marketing-panel {
+        background-color: $primary-color;
+        color: $default-color;}
+    .login-panel > .inner-panel {
+        max-width: 400px;
+        margin: 0 auto;}
+    .logo {
+        display: block;
+        font-size: 280%;
+        text-align: center;
+        color: $primary-color;
+        margin-bottom: 1em;
+        &::before {
+            font-weight: bold;
+            content: "Gab";}
+        &::after {
+            content: "Lab";}
     }
 }

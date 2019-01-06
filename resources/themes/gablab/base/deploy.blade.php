@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Deploy Server
+    @lang('navigation.account.deploy')
 @endsection
 
 @section('deploy')
@@ -31,16 +31,15 @@
 @section('content-header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Servers</a></li>
-            <li class="breadcrumb-item active">Deploy</li>
+            <li class="breadcrumb-item"><a href="{{ route('index') }}">@lang('navigation.account.my_servers')</a></li>
+            <li class="breadcrumb-item active">@lang('navigation.account.deploy')</li>
         </ol>
     </nav>
 @endsection
 
 @section('content')
     @if (is_null($egg_id))
-        <h3>Deploy a Server</h3>
+        <h3>@lang('base.deploy.title')</h3>
         <div class="row game-group" data-input-name="nest">
             @foreach($nests as $nest)
                 @foreach($nest->eggs as $egg)
@@ -55,7 +54,7 @@
         </div>
     @else
         <div class="card card-body">
-            <h3>Deploy {{ $egg->name }}</h3>
+            <h3>@lang('base.deploy.game', ['name' => $egg->name])</h3>
             <form method="POST" action="{{ route('deploy.submit') }}">
                 {!! csrf_field() !!}
                 <input type="hidden" name="egg" value="{{ $egg->id }}">
@@ -63,7 +62,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Server Name</label>
+                            <label class="control-label">@lang('strings.server_name')</label>
                             <div>
                                 <input class="form-control" type="text" name="name" value="{{ old('name') }}">
                             </div>
@@ -71,7 +70,7 @@
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group">
-                            <label class="control-label">Memory</label>
+                            <label class="control-label">@lang('strings.memory')</label>
                             <div>
                                 <select name="ram" class="form-control" data-cost="{{ $egg->nest->memory_monthly_cost }}">
                                     @foreach ($ram_sizes as $size)
@@ -83,7 +82,7 @@
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group">
-                            <label class="control-label">Disk</label>
+                            <label class="control-label">@lang('strings.disk')</label>
                             <div>
                                 <select name="disk" class="form-control" data-cost="{{ $egg->nest->disk_monthly_cost }}">
                                     @foreach ($disk_sizes as $size)
@@ -109,11 +108,11 @@
                 </div>
                 <div class="d-flex">
                     <div class="mr-auto py-2">
-                        <a href="{{ route('deploy') }}">Change Game</a>
+                        <a href="{{ route('deploy') }}">@lang('base.deploy.change_game')</a>
                     </div>
                     <div class="d-flex">
-                        <span id="price" class="mr-2 py-2 d-block">$0.00/month</span>
-                        <input type="submit" class="btn btn-outline-primary" value="Deploy" />
+                        <span class="mr-2 py-2 d-block">@lang('currency.sym')<span id="price">0.00</span>/@lang('strings.month')</span>
+                        <input type="submit" class="btn btn-outline-primary" value="@lang('strings.deploy')" />
                     </div>
                 </div>
             </form>

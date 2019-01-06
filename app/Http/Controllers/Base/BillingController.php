@@ -325,7 +325,7 @@ class BillingController extends Controller
             $charge = Charge::create([
                 'customer' => $customer->id,
                 'amount'   => $request->amount * 100,
-                'currency' => 'usd'
+                'currency' => strtolower(trans('currency.code'))
             ]);
             if ($charge->paid) {
                 $user->stripe_card_brand = $request->card_brand;
@@ -382,7 +382,7 @@ class BillingController extends Controller
         $payer->setPaymentMethod('paypal');
         $amount = new Amount();
         $amount->setTotal($request->amount);
-        $amount->setCurrency('USD');
+        $amount->setCurrency(strtoupper(trans('currency.code')));
         $transaction = new Transaction();
         $transaction->setAmount($amount);
         $redirectUrls = new RedirectUrls();

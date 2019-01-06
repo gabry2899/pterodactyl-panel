@@ -1,14 +1,13 @@
 @extends('layouts.master')
 
 @section('title')
-    Billing
+    @lang('navigation.account.billing')
 @endsection
 
 @section('content-header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-            <li class="breadcrumb-item active">Billing</li>
+            <li class="breadcrumb-item active">@lang('navigation.account.billing')</li>
         </ol>
     </nav>
 @endsection
@@ -19,18 +18,18 @@
             <div class="card card-body mb-4">
                 <div class="row">
                     <div class="col-6 text-center">
-                        <p class="font-weight-bold">This month charges</p>   
-                        <h2>${{ number_format($user->monthly_cost, 2) }}</h2>
+                        <p class="font-weight-bold">@lang('base.billing.summary.this_month_charges')</p>   
+                        <h2>@lang('currency.sym'){{ number_format($user->monthly_cost, 2) }}</h2>
                     </div>
                     <div class="col-6 text-center {{ $user->balance >= 0 ? 'text-success' : 'text-danger' }}">
-                        <p class="font-weight-bold">Account balance</p>  
-                        <h2>${{ number_format($user->balance, 2) }}</h2> 
+                        <p class="font-weight-bold">@lang('base.billing.summary.account_balance')</p>  
+                        <h2>@lang('currency.sym'){{ number_format($user->balance, 2) }}</h2> 
                     </div>
                 </div>
             </div>
             <div class="card card-body mb-4">
-                <h3>Link a Credit Card</h3>
                 @if ($user->stripe_customer_id)
+                    <h3>@lang('base.billing.unlink.heading')</h3>
                     <form method="POST" action="{{ route('account.billing.unlink') }}">
                         <p>@lang('base.billing.unlink.description', ['brand' => $user->stripe_card_brand, 'last4' => $user->stripe_card_last4])</p>
                         <div class="text-right">
@@ -39,6 +38,7 @@
                         </div>
                     </form>
                 @else
+                    <h3>@lang('base.billing.link.heading')</h3>
                     <form method="POST" action="{{ route('account.billing.link') }}">
                         <p>@lang('base.billing.link.description')</p>
                         <div class="form-group">
@@ -64,7 +64,7 @@
                 @endif
             </div>
             <div class="card card-body mb-4">
-                <h3>Add founds with Paypal</h3>
+                <h3>@lang('base.billing.charge.heading')</h3>
                 <form method="POST" action="{{ route('account.billing.paypal') }}">
                     <p>@lang('base.billing.charge.description')</p>
                     <div class="form-group">
@@ -82,7 +82,7 @@
         </div>
         <div class="col-12 col-md-6">
             <div class="card card-body mb-4">
-                <h3>Update Billing Identity</h3>
+                <h3>@lang('base.billing.info.header')</h3>
                 <form action="{{ route('account.billing.info') }}" method="POST">
                     <div class="row">
                         <div class="form-group col-sm-6">
@@ -134,7 +134,7 @@
                 </form>
             </div>
             <div class="card card-body mb-4">
-                <h3>Invoice History</h3>
+                <h3>@lang('base.billing.invoices.heading')</h3>
                 <table class="table table-hover">
                     <tr>
                         <th>#</th>
@@ -145,7 +145,7 @@
                     @foreach($invoices as $invoice)
                         <tr>
                             <td><b>#{{ $invoice->id }}</b></td>
-                            <td>$ {{ number_format($invoice->amount, 2) }}</td>
+                            <td>@lang('currency.sym') {{ number_format($invoice->amount, 2) }}</td>
                             <td>{{ date(__('strings.date_format'), strtotime($invoice->created_at)) }}</td>
                             <td class="text-right">
                                 <a href="{{ route('account.invoice.pdf', ['id' => $invoice->id]) }}"><i class="far fa-file-pdf"></i></a>

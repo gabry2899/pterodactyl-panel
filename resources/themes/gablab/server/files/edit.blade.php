@@ -1,45 +1,29 @@
-{{-- Pterodactyl - Panel --}}
-{{-- Copyright (c) 2015 - 2017 Dane Everitt <dane@daneeveritt.com> --}}
 
-{{-- This software is licensed under the terms of the MIT license. --}}
-{{-- https://opensource.org/licenses/MIT --}}
 @extends('layouts.master')
 
 @section('title')
-    @lang('server.files.edit.header')
+{{ $file }}
 @endsection
 
 @section('content-header')
-    <h1>@lang('server.files.edit.header')<small>@lang('server.files.edit.header_sub')</small></h1>
-    <ol class="breadcrumb">
-        <li><a href="{{ route('index') }}">@lang('strings.home')</a></li>
-        <li><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
-        <li><a href="{{ route('server.files.index', $server->uuidShort) }}">@lang('navigation.server.file_browser')</a></li>
-        <li class="active">@lang('navigation.server.edit_file')</li>
-    </ol>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('index') }}">@lang('navigation.account.my_servers')</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('server.index', $server->uuidShort) }}">{{ $server->name }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('server.files.index', $server->uuidShort) }}">@lang('navigation.server.file_management')</a></li>
+            <li class="breadcrumb-item active">{{ $file }}</li>
+        </ol>
+    </nav>
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12">
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">{{ $file }}</h3>
-                <div class="pull-right box-tools">
-                    <a href="/server/{{ $server->uuidShort }}/files#{{ rawurlencode($directory) }}" class="pull-right"><button class="btn btn-default btn-sm">@lang('server.files.edit.return')</button></a>
-                </div>
-            </div>
-            <input type="hidden" name="file" value="{{ $file }}" />
-            <textarea id="editorSetContent" class="hidden">{{ $contents }}</textarea>
-            <div class="overlay" id="editorLoadingOverlay"><i class="fa fa-refresh fa-spin"></i></div>
-            <div class="box-body" style="height:500px;" id="editor"></div>
-            <div class="box-footer with-border">
-                <button class="btn btn-sm btn-primary" id="save_file"><i class="fa fa-fw fa-save"></i> &nbsp;@lang('server.files.edit.save')</button>
-                <a href="/server/{{ $server->uuidShort }}/files#{{ rawurlencode($directory) }}" class="pull-right"><button class="btn btn-default btn-sm">@lang('server.files.edit.return')</button></a>
-            </div>
-        </div>
+    <input type="hidden" name="file" value="{{ $file }}" />
+    <textarea id="editorSetContent" class="d-none">{{ $contents }}</textarea>
+    <div style="height:500px; width: 100%; margin: 1em 0;" id="editor"></div>
+    <div class="text-right">
+        <button class="btn btn-primary" id="save_file"><i class="fa fa-fw fa-save"></i> &nbsp;@lang('server.files.edit.save')</button>
+        <a href="/server/{{ $server->uuidShort }}/files#{{ rawurlencode($directory) }}"><button class="btn btn-secondary">@lang('server.files.edit.return')</button></a>
     </div>
-</div>
 @endsection
 
 @section('footer-scripts')
